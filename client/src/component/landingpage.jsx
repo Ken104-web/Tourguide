@@ -1,5 +1,7 @@
 import React from "react";
 import './landingpage.css';
+import LoginForm from './sign';
+
 function LandingPage(){
     return(
         <>
@@ -9,6 +11,7 @@ function LandingPage(){
                 <p>Adventure with us to explore</p>
                 </div>
        </div>
+       < LoginForm />
         </>
     )
 }
