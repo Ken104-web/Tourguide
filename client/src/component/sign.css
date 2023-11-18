@@ -1,0 +1,16 @@
+.form h3{
+    color: #2F7979;
+    font-family: Jost;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.form button {
+    border-radius: 32px;
+    background: #2D7AD4;
+    width: 254px;
+    height: 64px;
+    flex-shrink: 0;
+}
+.form 

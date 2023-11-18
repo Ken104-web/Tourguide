@@ -1,114 +1,108 @@
-import React, { useState } from "react";
-// import { useSignIn } from 'react-auth-kit';
-import Swal from 'sweetalert2';
+import React, { useState } from 'react';
+import Swal from 'sweetalert2'; 
+import withReactContent from 'sweetalert2-react-content';
+import  "./sign.css"
 
-const LoginForm = () => {
-//   const signIn = useSignIn();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState("");
+const MySwal = withReactContent(Swal);
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  }
-  
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  }
-  
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value)
-  }
-  
-  const handleLogin = async (e) => {
+function SignupForm() {
+  const [isOpen, setIsOpen] = useState(true);
+
+//   const toggleForm = () => {
+//     setIsOpen(!isOpen);
+//     if (onClose) {
+//       onClose();
+//     }
+//   };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const loginData = {
+
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    if (password !== confirmPassword) {
+      MySwal.fire({
+        icon: 'error',
+        title: 'Passwords do not match',
+      });
+      return;
+    }
+
+    const userData = {
+      username: username,
       email: email,
-      password: password
+      password: password,
     };
 
-    try {
-      const response = await fetch('https://bluecart-api.onrender.com/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
+    console.log('Submitting user data:', userData);
 
-      if (response.status === 200) {
-        try {
-          const data = await response.json();
+    fetch('https://bluecart-api.onrender.com/profile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => {
+        console.log('Response status:', response.status);
+        console.log('Response OK:', response.ok);
 
-          if (data.access_token) {
-            localStorage.setItem('access_token', data.access_token);
-
-            // signIn({
-            //   token: data.access_token,
-            //   expiresIn: 1800,
-            //   tokenType: 'Bearer',
-            // });
-
-            Swal.fire({
-              icon: 'success',
-              title: 'Login Successful',
-              text: 'You have successfully logged in.',
-            });
-
-          } else {
-            console.error('Invalid token in the response data:', data);
-            Swal.fire({
-              icon: 'error',
-              title: 'Login Failed',
-              text: 'Invalid response data. Please try again.',
-            });
-          }
-        } catch (jsonError) {
-          console.error('JSON parsing error:', jsonError);
-          Swal.fire({
+        if (response.status === 201) {
+          MySwal.fire({
+            icon: 'success',
+            title: 'Registration successful',
+          });
+        } else {
+          MySwal.fire({
             icon: 'error',
-            title: 'Login Failed',
-            text: 'Invalid response data. Please try again.',
+            title: 'Registration failed',
           });
         }
-      } else {
-        Swal.fire({
+      })
+      .catch((error) => {
+        console.error('Error during registration:', error);
+        MySwal.fire({
           icon: 'error',
-          title: 'Login Failed',
-          text: 'Invalid email or password. Please try again.',
+          title: 'An error occurred during registration',
         });
-      }
-    } catch (error) {
-      console.error('Login Error:', error);
-
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'An error occurred during login. Please try again later.',
       });
-    }
   };
 
   return (
-    <div className= "sign">
-    <form onSubmit={handleLogin}>
-      <h3>Blue MarketPlace</h3>
-      <input type="email" placeholder="email" value={email} onChange={handleEmailChange} />
-      <input type="password" placeholder="password" value={password} onChange={handlePasswordChange} />
-      <input type="username" placeholder="username" value={username} onChange={handleUsernameChange} />
-      <button type="submit">Login</button>
-    </form>
-    <style>
-      {`
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-          text-transform: none;
-        }
-      `}
-    </style>
-  </div>
+    
+    <div className={`form ${isOpen ? 'open' : 'closed'}`}>
+      <h3>Tour Guide</h3>
+      <form onSubmit={handleSubmit}>
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <input
+          type="password"
+          id="password"
+          required
+          placeholder="Enter password"
+        />
+        <input
+          type="password"
+          id="confirmPassword"
+          required
+          placeholder="Confirm password"
+        />
+        <button type="submit">Sign Up</button>
+      </form>
+      <style>
+        {`
+          input[type="text"],
+          input[type="email"],
+          input[type="password"] {
+            text-transform: none; /* Remove default capitalization */
+          }
+        `}
+      </style>
+    </div>
   );
 }
 
-export default LoginForm;
+export default SignupForm;
