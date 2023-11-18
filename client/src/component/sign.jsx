@@ -76,6 +76,7 @@ function SignupForm() {
     <div className={`form ${isOpen ? 'open' : 'closed'}`}>
       <h3>Tour Guide</h3>
       <form onSubmit={handleSubmit}>
+      <div className="inputs">
         <input type="text" id="username" placeholder="Username" required />
         <input type="email" id="email" placeholder="Email" required />
         <input
@@ -91,6 +92,7 @@ function SignupForm() {
           placeholder="Confirm password"
         />
         <button type="submit">Sign Up</button>
+        </div>
       </form>
       <style>
         {`
