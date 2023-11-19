@@ -1,3 +1,13 @@
+* {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 0.2s linear;
+}
 
 #root {
   max-width: 1280px;
@@ -5,6 +15,12 @@
   padding: 2rem;
   text-align: center;
 
+}
+html {
+  font-size: 82.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
 }
 
 .logo {

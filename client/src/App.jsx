@@ -2,7 +2,6 @@ import './App.css'
 import {Route, Routes} from "react-router-dom";
 import LandingPage from './component/landingpage';
 import SignupForm from './component/sign'; 
-
 function App() {
 
   return (

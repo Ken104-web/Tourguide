@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import LoginForm from './sign';
 import "./start.css";
 
 function GetStarted() {
@@ -15,8 +14,7 @@ function GetStarted() {
       <button type="button" onClick={handleGetStartedClick}>
         Get Started
       </button>
-      {/* LoginForm component */}
-      {/* <LoginForm /> */}
+  
     </div>
   );
 }
