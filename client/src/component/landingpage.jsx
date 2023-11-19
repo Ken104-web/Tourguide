@@ -1,6 +1,6 @@
 import React from "react";
 import './landingpage.css';
-import LoginForm from './sign';
+import GetStrarted from "./start";
 
 function LandingPage(){
     return(
@@ -10,8 +10,9 @@ function LandingPage(){
                 <h1> Travel Discover more</h1>
                 <p>Adventure with us to explore</p>
                 </div>
+                
        </div>
-       < LoginForm />
+       <GetStrarted />
         </>
     )
 }
