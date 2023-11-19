@@ -74,9 +74,10 @@ function SignupForm() {
   return (
     
     <div className={`form ${isOpen ? 'open' : 'closed'}`}>
-      <h3>Tour Guide</h3>
+      <div className="form-container">
       <form onSubmit={handleSubmit}>
       <div className="inputs">
+      <h3>Tour Guide</h3>
         <input type="text" id="username" placeholder="Username" required />
         <input type="email" id="email" placeholder="Email" required />
         <input
@@ -94,6 +95,7 @@ function SignupForm() {
         <button type="submit">Sign Up</button>
         </div>
       </form>
+      </div>
       <style>
         {`
           input[type="text"],
