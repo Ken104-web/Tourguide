@@ -39,7 +39,7 @@ function SignupForm() {
 
     console.log('Submitting user data:', userData);
 
-    fetch('https://bluecart-api.onrender.com/profile', {
+    fetch('api/sign', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
