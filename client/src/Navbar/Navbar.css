@@ -27,4 +27,9 @@
     padding: 1rem;
     color: #2d7ad4;
 
+}
+.Nav .links a:hover {
+    color: #2d7ad4;
+    transform: 0.5s;
+    text-decoration: underline;
   }
