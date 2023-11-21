@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2'; 
 import withReactContent from 'sweetalert2-react-content';
 import  "./sign.css"
+import { useNavigate } from 'react-router-dom';
 
 const MySwal = withReactContent(Swal);
 
 function SignupForm() {
   const [isOpen, setIsOpen] = useState(true);
+
+  const navigate = useNavigate()
 
 //   const toggleForm = () => {
 //     setIsOpen(!isOpen);
@@ -14,6 +17,10 @@ function SignupForm() {
 //       onClose();
 //     }
 //   };
+const handleSignInClick = () => {
+  navigate('/guide');
+};
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -92,7 +99,7 @@ function SignupForm() {
           required
           placeholder="Confirm password"
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" onClick={handleSignInClick}>Sign Up</button>
         </div>
       </form>
       </div>
