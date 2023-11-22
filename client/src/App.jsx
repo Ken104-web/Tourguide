@@ -3,6 +3,7 @@ import {Route, Routes} from "react-router-dom";
 import LandingPage from './component/landingpage';
 import SignupForm from './component/sign'; 
 import Navbar from './Navbar/Navbar';
+import Search from './search/search';
 function App() {
 
   return (

@@ -1,9 +1,12 @@
 import react from "react";
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import Search from "../search/search";
+
 
 function Navbar(){
     return(
+        <div>
         <div className="Nav">
             <div className="bar">
             <i className="fa-solid fa-plane"></i>
@@ -14,8 +17,10 @@ function Navbar(){
         <Link to='/world'>Our World</Link>
         <Link to='/contact'>Contact</Link>
       </div>
-  
         </div>
+        <Search />
+        </div>
+    
     )
 
 }
