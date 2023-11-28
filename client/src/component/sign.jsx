@@ -21,7 +21,6 @@ const handleSignInClick = () => {
   navigate('/guide');
 };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 

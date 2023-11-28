@@ -2,14 +2,22 @@ import { useState, useEffect } from "react"
 import "./search.css"
 
 function Search(){
-const [issearch, setIsSearch] = useState([])
-const [isSite, setIsSite] = useState(null)
+const [issearch, setIsSearch] = useState(localStorage.getItem('isSearch' || ''))
+const [data, setData] = useState([])
 
+
+const obj =  JSON.stringify({query: issearch})
 useEffect(() => {
-    fetch("/api/world")
+    fetch("api/search", {
+        method: "POST",
+        headers : {
+        "content-Type": "application/json",
+        },
+        body : obj
+    })
     .then((r) => r.json())
     .then((data) => console.log(data));
-}, [])
+}, [obj])
 
 const handleSearchSite = (e) => {
     const searchedSite = e.target.value;
@@ -24,7 +32,8 @@ return(
             value={issearch}
             onChange={handleSearchSite}
             />
-        <p>Most reached destinations across the country</p>
+        <p>Most reached destinations across the World</p>
+
         </div>
     </div>
 )
