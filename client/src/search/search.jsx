@@ -18,18 +18,21 @@ useEffect(() => {
     .then((r) => r.json())
     .then((data) => console.log(data));
 }, [obj])
-
+const handleSubmit = (e) => {
+    e.preventDefault();
+};
 const handleSearchSite = (e) => {
     const searchedSite = e.target.value;
     setIsSearch(searchedSite)
 };
+
 return(
     <div className="search">
         <div className="bar">
             <input
             type="text"
             placeholder="Search your destination here"
-            value={issearch}
+            value={issearch ?? ''}
             onChange={handleSearchSite}
             />
         <p>Most reached destinations across the World</p>
