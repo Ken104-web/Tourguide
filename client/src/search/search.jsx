@@ -34,13 +34,11 @@ function Search() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Your search logic here if needed
   };
 
   const handleSearchSite = (e) => {
     const searchedSite = e.target.value;
     setIsSearch(searchedSite);
-    // Your search logic here if needed
   };
 
   return (
