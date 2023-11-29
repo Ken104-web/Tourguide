@@ -17,8 +17,10 @@ margin-top: -13.5rem;
 }
 .search .map {
     display: grid;
+    /* grid-template-columns: auto auto auto auto; */
     gap: 1.5rem;
     margin-top: 2rem;
+
 }
 .search .map img {
     width: 25rem;
