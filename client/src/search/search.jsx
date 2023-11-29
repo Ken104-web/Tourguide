@@ -1,9 +1,19 @@
+
 import React, { useState, useEffect } from "react";
 import "./search.css";
+
 function Search() {
-  const [issearch, setIsSearch] = useState(localStorage.getItem('isSearch') || '');
+  const [issearch, setIsSearch] = useState('');
   const [data, setData] = useState([]);
-  useEffect(() => {
+
+    useEffect(() => {
+    fetch('http://localhost:3000/data')
+    .then(resp => resp.json())
+    .then((data) => 
+    console.log(data));
+    // setData(data));
+  }, [])
+    useEffect(() => {
     if (issearch.trim() !== '') {
         const obj = JSON.stringify({ query: issearch });
         fetch('api/search', {
@@ -16,7 +26,7 @@ function Search() {
         .then(resp => resp.json())
         .then((data) => {
             setData(data);
-            console.log(data);
+            // console.log(data);
         })
   
     }
@@ -24,11 +34,13 @@ function Search() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Your search logic here if needed
   };
 
   const handleSearchSite = (e) => {
     const searchedSite = e.target.value;
     setIsSearch(searchedSite);
+    // Your search logic here if needed
   };
 
   return (
@@ -38,23 +50,25 @@ function Search() {
           <input
             type="text"
             placeholder="Search your destination here"
-            value={issearch ?? ''}
+            value={issearch}
             onChange={handleSearchSite}
           />
         </form>
         <p>Most reached destinations across the World</p>
         <div className="map">
-          {data.map((search, index) => (
-            <>
-            {/* <img key={index} src={search.image} alt={`Destination ${index}`} /> */}
-            <p>{search.destination}</p>
-            <h3>{search.activity}</h3>
-         </>
-         ))}
+          {data.map((destination, index) => (
+            <div key={destination.id} className="destination-card">
+              {/* <img src={destination.images} alt={`Destination ${index}`} /> */}
+              <p className="destination-name">{destination.destination}</p>
+              <p className="activity">{destination.activity}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
-export default Search;
+export default Search
+
+
